@@ -1,0 +1,40 @@
+<h1>ADIT Email Validator</h1>
+<div style="text-align: center; gap: 10vh;">
+  <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="email" formControlName="Email" />
+    @if(Email?.invalid && (Email?.dirty || Email?.touched)){
+    @if(Email?.errors?.['required']){
+    <span>email is required.</span>
+    }
+    }
+
+    <input type="password" placeholder="password" formControlName="Password" />
+    @if(Password?.invalid && (Password?.dirty || Password?.touched)){
+    @if(Password?.errors?.['required']){
+    <span>Password must be filled with 10 characters.</span>
+    }
+    }
+    <span style="text-align: left;">
+      Gender:
+      <input type="radio" formControlName="Gender" value="Male">Male
+      <input type="radio" formControlName="Gender" value="Female">Female
+    </span>
+    <span style="text-align: left;">
+      <label> Choose Your State:</label>
+      <select formControlName="State">
+        <option value="Telangana">Telangana</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="Madhya Pradesh">Madhya Pradesh</option>
+        <option value="Dehradun">Dehradun</option>
+      </select>
+    </span>
+
+    <button type="submit" [disabled]="!loginform.valid">Login</button>
+    {{
+    loginform.value | json
+    }}
+    {{
+    loginform.valid | json
+    }}
+  </form>
+</div>
